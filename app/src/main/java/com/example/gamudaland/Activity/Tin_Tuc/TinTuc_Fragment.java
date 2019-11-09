@@ -1,5 +1,6 @@
 package com.example.gamudaland.Activity.Tin_Tuc;
 
+import android.app.ActionBar;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.gamudaland.Adapter.DataAdapter;
@@ -44,7 +46,22 @@ public class TinTuc_Fragment extends Fragment {
         data.execute(url);
 
 
+//        setupActionBar();
+
         return view;
+    }
+    private void setupActionBar() {
+        ActionBar actionBar = getActivity().getActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayUseLogoEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(false);
+
+        ActionBar.LayoutParams lp1 = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
+        View customNav = LayoutInflater.from(getActivity()).inflate(R.layout.actionbar, null); // layout which contains your button.
+
+        actionBar.setCustomView(customNav, lp1);
     }
 
 

@@ -44,11 +44,12 @@ import java.util.List;
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             View view = LayoutInflater.from(context).inflate(R.layout.tintuc, parent, false);
-            TextView tvData = view.findViewById(R.id.tvData);
+            TextView tvData = view.findViewById(R.id.tvtittle);
+            TextView tvdate = view.findViewById(R.id.tvDate);
 
             TinTuc tinTuc = tinTucList.get(position);
             tvData.setText(tinTuc.title);
-//        tvDescription.setText(tinTuc.description);
+            tvdate.setText(tinTuc.pubDate);
 //        tvLink.setText(tinTuc.linkk);
 
 
@@ -64,12 +65,11 @@ import java.util.List;
 //        }
 
 
-            tvData.setOnClickListener(new View.OnClickListener() {
+            view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     TinTuc tinTuc = tinTucList.get(position);
                     Intent intent = new Intent(context, WebviewActivity.class);
-                    intent.putExtra("title", tinTuc.title);
                     intent.putExtra("link", tinTuc.linkk);
                     context.startActivity(intent);
 

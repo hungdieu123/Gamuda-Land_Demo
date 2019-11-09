@@ -19,7 +19,6 @@ public class WebviewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
-            String tt = bundle.getString("title");
             String lk = bundle.getString("link");
 
             webView.loadUrl(lk);
