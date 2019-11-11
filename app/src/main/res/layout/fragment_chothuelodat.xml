@@ -10,4 +10,10 @@
         android:layout_height="wrap_content"
         android:text="This is fragments!" />
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo" />
+
 </LinearLayout>
