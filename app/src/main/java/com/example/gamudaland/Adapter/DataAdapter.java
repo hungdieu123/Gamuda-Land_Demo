@@ -50,19 +50,7 @@ import java.util.List;
             TinTuc tinTuc = tinTucList.get(position);
             tvData.setText(tinTuc.title);
             tvdate.setText(tinTuc.pubDate);
-//        tvLink.setText(tinTuc.linkk);
 
-
-
-
-//        File file=new File(tinTuc.image);
-//        if(file.exists()) {
-//            Bitmap myBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-//
-//            tvImage.setImageBitmap(myBitmap);
-//
-//
-//        }
 
 
             view.setOnClickListener(new View.OnClickListener() {

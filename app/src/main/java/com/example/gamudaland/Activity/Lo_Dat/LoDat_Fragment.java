@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.gamudaland.Adapter.CanHo_PagerAdapter;
+import com.example.gamudaland.Adapter.LoDat_PagerAdapter;
 import com.example.gamudaland.R;
 import com.example.gamudaland.Adapter.MyAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -33,12 +35,10 @@ public class LoDat_Fragment extends Fragment {
         return view;
     }
     public void addTab(ViewPager viewPager){
-        MyAdapter adapter;
-        adapter = new MyAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFrag(new MuaBanLoDat_Fragment(),"Mua Bán");
-        adapter.addFrag(new ChothueLodat_Fragment(),"Cho Thuê");
-
-        viewPager.setAdapter(adapter);//set adapter
+        LoDat_PagerAdapter adapter=new LoDat_PagerAdapter(getActivity().getSupportFragmentManager());
+        adapter.addFrag("Mua Bán");
+        adapter.addFrag("Cho Thuê");
+        viewPager.setAdapter(adapter);
     }
 
 }

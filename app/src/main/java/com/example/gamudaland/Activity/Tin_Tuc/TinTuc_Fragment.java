@@ -46,23 +46,9 @@ public class TinTuc_Fragment extends Fragment {
         data.execute(url);
 
 
-//        setupActionBar();
-
         return view;
     }
-    private void setupActionBar() {
-        ActionBar actionBar = getActivity().getActionBar();
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayUseLogoEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(false);
 
-        ActionBar.LayoutParams lp1 = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
-        View customNav = LayoutInflater.from(getActivity()).inflate(R.layout.actionbar, null); // layout which contains your button.
-
-        actionBar.setCustomView(customNav, lp1);
-    }
 
 
 
@@ -143,7 +129,6 @@ public class TinTuc_Fragment extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<TinTuc> tinTucs) {
             super.onPostExecute(tinTucs);
-//            Toast.makeText(NewsActivity.this,tinTucs.size()+"",Toast.LENGTH_SHORT).show();
             dataAdapter.notifyDataSetChanged();
         }
 

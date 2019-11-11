@@ -23,12 +23,26 @@
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:text="TextView" />
-        <TextView
-            android:layout_marginLeft="10dp"
-            android:id="@+id/tvDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:textSize="10dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/time"
+                android:text="TextView" />
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/tvDate"
+                android:textSize="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+        </LinearLayout>
     </LinearLayout>
 
 
