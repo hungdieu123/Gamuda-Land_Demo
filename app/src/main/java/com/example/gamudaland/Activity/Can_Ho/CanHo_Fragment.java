@@ -4,16 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.gamudaland.Adapter.CanHo_PagerAdapter;
+import com.example.gamudaland.Adapter.PagerAdapter.CanHo_PagerAdapter;
 import com.example.gamudaland.R;
-import com.example.gamudaland.Adapter.MyAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class CanHo_Fragment extends Fragment {

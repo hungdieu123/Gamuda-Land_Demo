@@ -15,11 +15,11 @@ import com.example.gamudaland.R;
 import java.util.List;
 
 
-    public class DataAdapter extends BaseAdapter {
+    public class TinTucAdapter extends BaseAdapter {
         private Context context;
         private List<TinTuc> tinTucList;
 
-        public DataAdapter(Context context, List<TinTuc> tinTucList) {
+        public TinTucAdapter(Context context, List<TinTuc> tinTucList) {
             this.context = context;
             this.tinTucList = tinTucList;
         }

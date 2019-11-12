@@ -1,4 +1,4 @@
-package com.example.gamudaland.Adapter;
+package com.example.gamudaland.Adapter.PagerAdapter;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

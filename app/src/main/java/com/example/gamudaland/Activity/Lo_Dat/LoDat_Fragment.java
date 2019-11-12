@@ -9,10 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.gamudaland.Adapter.CanHo_PagerAdapter;
-import com.example.gamudaland.Adapter.LoDat_PagerAdapter;
+import com.example.gamudaland.Adapter.PagerAdapter.LoDat_PagerAdapter;
 import com.example.gamudaland.R;
-import com.example.gamudaland.Adapter.MyAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class LoDat_Fragment extends Fragment {

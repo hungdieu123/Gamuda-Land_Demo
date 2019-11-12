@@ -1,6 +1,5 @@
 package com.example.gamudaland.Activity.Tin_Tuc;
 
-import android.app.ActionBar;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,10 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.gamudaland.Adapter.DataAdapter;
+import com.example.gamudaland.Adapter.TinTucAdapter;
 import com.example.gamudaland.R;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -30,7 +28,7 @@ public class TinTuc_Fragment extends Fragment {
 
     private ArrayList<TinTuc> tinTucs;
     private ListView lvList;
-    private DataAdapter dataAdapter;
+    private TinTucAdapter dataAdapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,8 +37,9 @@ public class TinTuc_Fragment extends Fragment {
 
         tinTucs = new ArrayList<>();
         lvList = view.findViewById(R.id.rcview);
-        dataAdapter = new DataAdapter(getActivity(), tinTucs);
+        dataAdapter = new TinTucAdapter(getActivity(), tinTucs);
         lvList.setAdapter(dataAdapter);
+
         String url = "https://batdongsan.com.vn/Modules/RSS/RssDetail.aspx?catid=88&typeid=2";
         Data data = new Data();
         data.execute(url);
