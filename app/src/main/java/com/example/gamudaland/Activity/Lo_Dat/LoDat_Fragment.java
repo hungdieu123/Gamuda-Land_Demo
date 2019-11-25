@@ -39,4 +39,6 @@ public class LoDat_Fragment extends Fragment {
         viewPager.setAdapter(adapter);
     }
 
-}
+
+    }
+

@@ -2,17 +2,11 @@ package com.example.gamudaland.Activity;
 
 import android.os.Bundle;
 
-import com.example.gamudaland.Adapter.ChothueLoDat_Adapter;
+import com.example.gamudaland.Adapter.LoDat.ChothueLoDat_Adapter;
 import com.example.gamudaland.Model.Chothuelodat;
 import com.example.gamudaland.Model.DataBase;
 import com.example.gamudaland.R;
 import com.example.gamudaland.SQLDAO.ChothuelodatDAO;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,10 +20,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.Menu;
-import android.widget.SearchView;
-import android.widget.Toast;
-
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
@@ -37,6 +27,9 @@ public class HomeActivity extends AppCompatActivity {
 
     List<Chothuelodat> chothuelodatList;
     ChothuelodatDAO chothuelodatDAO;
+    public static int muabanlodat = 0;
+
+
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -44,12 +37,13 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        chothuelodatDAO=new ChothuelodatDAO(this);
-        chothuelodatList=chothuelodatDAO.getAll();
-        chothueLoDat_adapter=new ChothueLoDat_Adapter(chothuelodatList,this);
+
 
         DataBase dataBase = new DataBase(this);
         dataBase.createDataBase();
+        chothuelodatDAO=new ChothuelodatDAO(this);
+        chothuelodatList=chothuelodatDAO.getAll();
+        chothueLoDat_adapter=new ChothueLoDat_Adapter(chothuelodatList,this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -65,6 +59,7 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         //
+
     }
 
 

@@ -4,119 +4,101 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:padding="16dp"
     android:layout_height="wrap_content">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-        <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edttittle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:id="@+id/edttittle"
-                android:layout_height="wrap_content"
-                android:hint="Tittle" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:id="@+id/edtdate"
-                            android:layout_height="wrap_content"
-                            android:hint="Date" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:id="@+id/edtgia"
-                        android:layout_height="wrap_content"
-                        android:hint="Giá" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:id="@+id/edtdientich"
-                            android:layout_height="wrap_content"
-                            android:hint="Diện Tích" />
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/edtlink"
-                                android:hint="Link" />
-
-                            <com.google.android.material.textfield.TextInputLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/edtma"
-                                    android:hint="Mã Sách" />
-
-                            </com.google.android.material.textfield.TextInputLayout>
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </com.google.android.material.textfield.TextInputLayout>
-                </com.google.android.material.textfield.TextInputLayout>
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:hint="Tittle" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btncancel_sach"
-            android:layout_width="85dp"
-            android:layout_height="35dp"
 
-            android:layout_marginLeft="170dp"
-            android:text="Cancel" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="265dp"
+        android:layout_height="65dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtdate"
+            android:inputType=""
+            android:layout_width="265dp"
+            android:layout_height="wrap_content"
+            android:hint="Ngày" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
         <Button
-            android:id="@+id/btnok_sach"
+            android:layout_marginTop="10dp"
+            android:id="@+id/btnSet"
+            android:text="Set"
+            android:textAllCaps="false"
+            android:layout_width="60dp"
+            android:layout_height="50dp"/>
+    </LinearLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtgia"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Giá" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtdientich"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Diện Tích" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtlink"
+            android:inputType="textUri"
+            android:maxLines="1"
+            android:lines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Link" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+
+            android:textAllCaps="false"
+            android:text="Cancel"
+            android:id="@+id/btncancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:textAllCaps="false"
             android:text="Ok"
-            android:layout_width="65dp"
-            android:layout_height="35dp"/>
+            android:id="@+id/btnok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
-
-
 </LinearLayout>

@@ -1,7 +1,7 @@
 package com.example.gamudaland.Model;
 
-public class MuabanLoDat {
-    public String tittle,link,date,mamuabanlodat;
+public class Muabanlodat {
+    public String tittle,link,date,mamuabanlodat,img,gia,dientich;
 
     public String getTittle() {
         return tittle;
@@ -33,5 +33,29 @@ public class MuabanLoDat {
 
     public void setMamuabanlodat(String mamuabanlodat) {
         this.mamuabanlodat = mamuabanlodat;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getGia() {
+        return gia;
+    }
+
+    public void setGia(String gia) {
+        this.gia = gia;
+    }
+
+    public String getDientich() {
+        return dientich;
+    }
+
+    public void setDientich(String dientich) {
+        this.dientich = dientich;
     }
 }
