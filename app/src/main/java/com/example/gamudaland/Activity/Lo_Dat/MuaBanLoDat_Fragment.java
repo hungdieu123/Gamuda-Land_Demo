@@ -21,7 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.example.gamudaland.Adapter.LoDat.MuabanLoDat_Adapter;
+import com.example.gamudaland.Adapter.LoDat.Muabanlodat_Adapter;
 import com.example.gamudaland.Model.Muabanlodat;
 import com.example.gamudaland.R;
 import com.example.gamudaland.SQLDAO.MuabanlodatDAO;
@@ -45,7 +45,7 @@ public class MuaBanLoDat_Fragment extends Fragment {
     private MuabanlodatDAO muabanlodatDAO;
     private RecyclerView recyclerView;
     AlertDialog alertDialog;
-    private MuabanLoDat_Adapter muabanLoDat_adapter;
+    private Muabanlodat_Adapter muabanLoDat_adapter;
     private List<Muabanlodat> muabanlodats;
     FloatingActionButton floatingActionButton;
     private Muabanlodat muabanlodat;
@@ -136,7 +136,7 @@ public class MuaBanLoDat_Fragment extends Fragment {
                                 Toast.makeText(getActivity(),"Thêm Thành Công!",Toast.LENGTH_SHORT).show();
 
                                 muabanlodats=muabanlodatDAO.getAll();
-                                muabanLoDat_adapter=new MuabanLoDat_Adapter(muabanlodats,getActivity());
+                                muabanLoDat_adapter=new Muabanlodat_Adapter(muabanlodats,getActivity());
                                 StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
                                 recyclerView.setLayoutManager(gridLayoutManager);
                                 recyclerView.setAdapter(muabanLoDat_adapter);
@@ -161,7 +161,7 @@ public class MuaBanLoDat_Fragment extends Fragment {
         });
 
 
-        muabanLoDat_adapter=new MuabanLoDat_Adapter(muabanlodats,getActivity());
+        muabanLoDat_adapter=new Muabanlodat_Adapter(muabanlodats,getActivity());
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(muabanLoDat_adapter);

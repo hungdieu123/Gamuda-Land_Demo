@@ -1,4 +1,4 @@
-package com.example.gamudaland.Activity.Lo_Dat;
+package com.example.gamudaland.Activity.Hoa_Don;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -21,10 +21,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.example.gamudaland.Adapter.LoDat.Chothuelodat_Adapter;
-import com.example.gamudaland.Model.Chothuelodat;
+import com.example.gamudaland.Adapter.LoDat.Muabanlodat_Adapter;
+import com.example.gamudaland.Model.Muabanlodat;
 import com.example.gamudaland.R;
-import com.example.gamudaland.SQLDAO.ChothuelodatDAO;
+import com.example.gamudaland.SQLDAO.MuabanlodatDAO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -41,25 +41,25 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
-public class ChothueLodat_Fragment extends Fragment {
-   private ChothuelodatDAO chothuelodatDAO;
-   private RecyclerView recyclerView;
-   AlertDialog alertDialog;
-    private Chothuelodat_Adapter chothueLoDat_adapter;
-    private List<Chothuelodat> chothuelodats;
+public class Hoadonnhap_Fragment extends Fragment {
+    private MuabanlodatDAO muabanlodatDAO;
+    private RecyclerView recyclerView;
+    AlertDialog alertDialog;
+    private Muabanlodat_Adapter muabanLoDat_adapter;
+    private List<Muabanlodat> muabanlodats;
     FloatingActionButton floatingActionButton;
-    private Chothuelodat chothuelodat;
+    private Muabanlodat muabanlodat;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_chothuelodat, container, false);
+        View view = inflater.inflate(R.layout.fragment_muabanlodat, container, false);
+        recyclerView=view.findViewById(R.id.muabanlodat_rcview);
+        floatingActionButton=view.findViewById(R.id.floatingActionButton1);
 
-        recyclerView=view.findViewById(R.id.chothuelodat_rcview);
-        floatingActionButton=view.findViewById(R.id.floatingActionButton);
+        muabanlodat=new Muabanlodat();
 
-        chothuelodat=new Chothuelodat();
-        chothuelodatDAO=new ChothuelodatDAO(getActivity());
-        chothuelodats=chothuelodatDAO.getAll();
+        muabanlodatDAO=new MuabanlodatDAO(getActivity());
+        muabanlodats=muabanlodatDAO.getAll();
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,12 +73,10 @@ public class ChothueLodat_Fragment extends Fragment {
 
                 ok1=dialog1.findViewById(R.id.btnok);
                 btnSET=dialog1.findViewById(R.id.btnSet);
-
                 edttiitle=dialog1.findViewById(R.id.edttittle);
                 edtdate=dialog1.findViewById(R.id.edtdate);
                 edtgia=dialog1.findViewById(R.id.edtgia);
                 edtdientich=dialog1.findViewById(R.id.edtdientich);
-
                 edtlink=dialog1.findViewById(R.id.edtlink);
                 btnSET.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -102,8 +100,6 @@ public class ChothueLodat_Fragment extends Fragment {
                     @Override
                     public void onClick(View v) {
 
-
-
                         String tittle = edttiitle.getText().toString().trim();
                         String date  = edtdate.getText().toString().trim();
                         String gia = edtgia.getText().toString().trim();
@@ -124,28 +120,26 @@ public class ChothueLodat_Fragment extends Fragment {
                             Random r = new Random();
                             int i1 = (r.nextInt(8000) + 65);
 
-                            chothuelodat =new Chothuelodat();
+                            muabanlodat =new Muabanlodat();
 
-                            chothuelodat.setTittle(edttiitle.getText().toString().trim());
-                            chothuelodat.setDate(edtdate.getText().toString().trim());
-                            chothuelodat.setGia(edtgia.getText().toString().trim());
-                            chothuelodat.setDientich(edtdientich.getText().toString().trim());
-                            chothuelodat.setLink(edtlink.getText().toString().trim());
-                            chothuelodat.setMachothuelodat(String.valueOf(i1));
+                            muabanlodat.setTittle(edttiitle.getText().toString().trim());
+                            muabanlodat.setDate(edtdate.getText().toString().trim());
+                            muabanlodat.setGia(edtgia.getText().toString().trim());
+                            muabanlodat.setDientich(edtdientich.getText().toString().trim());
+                            muabanlodat.setLink(edtlink.getText().toString().trim());
+                            muabanlodat.setMamuabanlodat(String.valueOf(i1));
 
+                            muabanlodatDAO = new MuabanlodatDAO(getActivity());
 
-
-                            chothuelodatDAO = new ChothuelodatDAO(getActivity());
-
-                            long resurt = chothuelodatDAO.insert(chothuelodat);
+                            long resurt = muabanlodatDAO.insert(muabanlodat);
                             if(resurt>0){
                                 Toast.makeText(getActivity(),"Thêm Thành Công!",Toast.LENGTH_SHORT).show();
 
-                                chothuelodats=chothuelodatDAO.getAll();
-                                chothueLoDat_adapter=new Chothuelodat_Adapter(chothuelodats,getActivity());
+                                muabanlodats=muabanlodatDAO.getAll();
+                                muabanLoDat_adapter=new Muabanlodat_Adapter(muabanlodats,getActivity());
                                 StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
                                 recyclerView.setLayoutManager(gridLayoutManager);
-                                recyclerView.setAdapter(chothueLoDat_adapter);
+                                recyclerView.setAdapter(muabanLoDat_adapter);
 
                                 alertDialog.dismiss();
 
@@ -161,28 +155,29 @@ public class ChothueLodat_Fragment extends Fragment {
                     }
                 });
 
-
-
                 builder1.create();
                 alertDialog=builder1.show();
             }
         });
 
-        chothueLoDat_adapter=new Chothuelodat_Adapter(chothuelodats,getActivity());
+
+        muabanLoDat_adapter=new Muabanlodat_Adapter(muabanlodats,getActivity());
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setAdapter(chothueLoDat_adapter);
+        recyclerView.setAdapter(muabanLoDat_adapter);
 
         setHasOptionsMenu(true);
 
+
+
         return view;
     }
-    public void chothuelodat(){
-        String url = "https://batdongsan.com.vn/Modules/RSS/RssDetail.aspx?catid=326&typeid=1";
-        Data1 data = new Data1();
+    public void muabanlodat(){
+        String url = "https://batdongsan.com.vn/Modules/RSS/RssDetail.aspx?catid=283&typeid=1";
+        Data data = new Data();
         data.execute(url);
-    }
 
+    }
 
 
 
@@ -198,7 +193,6 @@ public class ChothueLodat_Fragment extends Fragment {
         SearchView searchView=(SearchView) searchItem.getActionView();
 
 
-
         searchView.setQueryHint("Search....");
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
@@ -210,16 +204,19 @@ public class ChothueLodat_Fragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                chothueLoDat_adapter.getFilter().filter(s);
+                muabanLoDat_adapter.getFilter().filter(s);
                 return false;
             }
         });
     }
-     class Data1 extends AsyncTask<String, Long, Chothuelodat> {
+
+
+
+    class Data extends AsyncTask<String, Long, Muabanlodat> {
 
 
         @Override
-        protected Chothuelodat doInBackground(String... strings) {
+        protected Muabanlodat doInBackground(String... strings) {
             String link = strings[0];
             try {
                 URL url = new URL(link);
@@ -255,20 +252,20 @@ public class ChothueLodat_Fragment extends Fragment {
 
 
                                 if (tag.equalsIgnoreCase("title")) {
-                                    chothuelodat.setTittle(text);
+                                    muabanlodat.setTittle(text);
                                 }else if (tag.equalsIgnoreCase("pubDate")) {
-                                    chothuelodat.setDate(text);
+                                    muabanlodat.setDate(text);
                                 } else if (tag.equalsIgnoreCase("url")) {
 //                                    tinTuc.image = text;
                                 } else if (tag.equalsIgnoreCase("link")) {
-                                    chothuelodat.setLink(text);
+                                    muabanlodat.setLink(text);
                                     Random r = new Random();
                                     int i1 = (r.nextInt(8000) + 65);
-                                    chothuelodat.setMachothuelodat(String.valueOf(i1));
-                                    chothuelodat.setDientich(String.valueOf(i1));
+                                    muabanlodat.setMamuabanlodat(String.valueOf(i1));
+                                    muabanlodat.setDientich(String.valueOf(i1));
 
                                 } else if (tag.equalsIgnoreCase("item")) {
-                                    chothuelodatDAO.insert(chothuelodat);
+                                    muabanlodatDAO.insert(muabanlodat);
                                 }
                             }
                             break;
@@ -290,15 +287,23 @@ public class ChothueLodat_Fragment extends Fragment {
                 e.printStackTrace();
             }
 
-            return chothuelodat;
+            return muabanlodat;
         }
-
 
         @Override
-        protected void onPreExecute() {
-            super.onPostExecute(chothuelodat);
-            chothueLoDat_adapter.notifyDataSetChanged();
+        protected void onPostExecute(Muabanlodat muabanlodat) {
+            super.onPostExecute(muabanlodat);
+            muabanLoDat_adapter.notifyDataSetChanged();
         }
+
+
     }
+
+    @Override
+    public void onDetach() {
+        setHasOptionsMenu(false);
+        super.onDetach();
+    }
+
 
 }

@@ -2,7 +2,7 @@ package com.example.gamudaland.Activity;
 
 import android.os.Bundle;
 
-import com.example.gamudaland.Adapter.LoDat.ChothueLoDat_Adapter;
+import com.example.gamudaland.Adapter.LoDat.Chothuelodat_Adapter;
 import com.example.gamudaland.Model.Chothuelodat;
 import com.example.gamudaland.Model.DataBase;
 import com.example.gamudaland.R;
@@ -23,11 +23,10 @@ import androidx.appcompat.widget.Toolbar;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
-    ChothueLoDat_Adapter chothueLoDat_adapter;
+    Chothuelodat_Adapter chothueLoDat_adapter;
 
     List<Chothuelodat> chothuelodatList;
     ChothuelodatDAO chothuelodatDAO;
-    public static int muabanlodat = 0;
 
 
 
@@ -43,7 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         dataBase.createDataBase();
         chothuelodatDAO=new ChothuelodatDAO(this);
         chothuelodatList=chothuelodatDAO.getAll();
-        chothueLoDat_adapter=new ChothueLoDat_Adapter(chothuelodatList,this);
+        chothueLoDat_adapter=new Chothuelodat_Adapter(chothuelodatList,this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -51,7 +50,7 @@ public class HomeActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
+                R.id.nav_home, R.id.nav_gallery,R.id.nav_hoadon, R.id.nav_slideshow,
                 R.id.nav_tools)
                 .setDrawerLayout(drawer)
                 .build();

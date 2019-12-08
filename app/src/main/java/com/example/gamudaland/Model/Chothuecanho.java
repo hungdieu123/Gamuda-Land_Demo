@@ -1,7 +1,31 @@
 package com.example.gamudaland.Model;
 
-public class ChothueCanHo {
-    public String tittle,link,date,machothuecanho;
+public class Chothuecanho {
+    public String tittle,link,date,machothuecanho,img,gia,dientich;
+
+    public String getGia() {
+        return gia;
+    }
+
+    public void setGia(String gia) {
+        this.gia = gia;
+    }
+
+    public String getDientich() {
+        return dientich;
+    }
+
+    public void setDientich(String dientich) {
+        this.dientich = dientich;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public String getTittle() {
         return tittle;

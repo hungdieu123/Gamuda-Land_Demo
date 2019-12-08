@@ -19,9 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gamudaland.Activity.Lo_Dat.WebView_Chothue_Canho;
 import com.example.gamudaland.Model.Chothuelodat;
-import com.example.gamudaland.Model.Muabanlodat;
 import com.example.gamudaland.R;
-import com.example.gamudaland.SQLDAO.MuabanlodatDAO;
+import com.example.gamudaland.SQLDAO.ChothuelodatDAO;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -29,40 +28,40 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
-public class MuabanLoDat_Adapter extends RecyclerView.Adapter<MuabanLoDat_Adapter.MuabanLoDatHolder> {
-    private List<Muabanlodat> muabanlodatList;
-    private List<Muabanlodat> muabanlodatFilter;
+public class Chothuelodat_Adapter extends RecyclerView.Adapter<Chothuelodat_Adapter.ChothueLoDatHolder> {
+    private List<Chothuelodat> chothuelodatList;
+    private List<Chothuelodat> chothuelodatFilter;
     private Context context;
     AlertDialog alertDialog;
-    private Muabanlodat muabanlodat;
-    private MuabanlodatDAO muabanlodatDAO;
+    private Chothuelodat chothuelodat;
+    private ChothuelodatDAO chothuelodatDAO;
 
 
 
 
-    public MuabanLoDat_Adapter(List<Muabanlodat> muabanlodatList, Context context) {
-        this.muabanlodatList = muabanlodatList;
+    public Chothuelodat_Adapter(List<Chothuelodat> chothuelodatList, Context context) {
+        this.chothuelodatList = chothuelodatList;
         this.context = context;
 
     }
 
     @NonNull
     @Override
-    public MuabanLoDat_Adapter.MuabanLoDatHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Chothuelodat_Adapter.ChothueLoDatHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item,parent,false);
-        return new MuabanLoDatHolder(view);
+        return new ChothueLoDatHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MuabanLoDat_Adapter.MuabanLoDatHolder holder, final int position) {
-        muabanlodatDAO=new MuabanlodatDAO(context);
-        muabanlodat=new Muabanlodat();
-        holder.tittile.setText(muabanlodatList.get(position).getTittle());
-        holder.date.setText(muabanlodatList.get(position).getDate());
+    public void onBindViewHolder(@NonNull final Chothuelodat_Adapter.ChothueLoDatHolder holder, final int position) {
+        chothuelodatDAO=new ChothuelodatDAO(context);
+        chothuelodat=new Chothuelodat();
+        holder.tittile.setText(chothuelodatList.get(position).getTittle());
+        holder.date.setText(chothuelodatList.get(position).getDate());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Muabanlodat tinTuc = muabanlodatList.get(position);
+                Chothuelodat tinTuc = chothuelodatList.get(position);
                 Intent intent = new Intent(context, WebView_Chothue_Canho.class);
                 intent.putExtra("link", tinTuc.link);
                 context.startActivity(intent);
@@ -71,8 +70,8 @@ public class MuabanLoDat_Adapter extends RecyclerView.Adapter<MuabanLoDat_Adapte
         });
         Random r = new Random();
         final int i1 = (r.nextInt(8000) + 65);
-        if (muabanlodatList.get(position).getGia()!=null){
-            holder.gia.setText(muabanlodatList.get(position).getGia()+"$");
+        if (chothuelodatList.get(position).getGia()!=null){
+            holder.gia.setText(chothuelodatList.get(position).getGia()+"$");
         }else {
             holder.gia.setText("Click Để Xem Thêm!");
         }
@@ -93,9 +92,14 @@ public class MuabanLoDat_Adapter extends RecyclerView.Adapter<MuabanLoDat_Adapte
                     public void onClick(View v) {
 
 
-                        Toast.makeText(context,"Xóa Thành công "+muabanlodatList.get(position).getTittle(),Toast.LENGTH_LONG).show();
-                        muabanlodatDAO.delete(muabanlodatList.get(position).getMamuabanlodat());
-                        muabanlodatList.remove(position);
+//                        Toast.makeText(context,"Xóa Thành công "+chothuelodatList.get(position).getTittle(),Toast.LENGTH_LONG).show();
+//                        chothuelodatDAO.delete(chothuelodatList.get(position).getMachothuelodat());
+//                        chothuelodatList.remove(position);
+
+                        for (int i=0;i<chothuelodatList.size();i++){
+                        chothuelodatDAO.delete(chothuelodatList.get(i).getMachothuelodat());
+                        chothuelodatList.remove(i);
+                        }
                         notifyDataSetChanged();
                         alertDialog.dismiss();
 
@@ -142,12 +146,12 @@ public class MuabanLoDat_Adapter extends RecyclerView.Adapter<MuabanLoDat_Adapte
 
 
 
-                edttiitle.setText(muabanlodatList.get(position).getTittle());
-                edtdate.setText(muabanlodatList.get(position).getDate());
-                edtgia.setText(muabanlodatList.get(position).getGia());
-                edtdientich.setText(muabanlodatList.get(position).getDientich());
+                edttiitle.setText(chothuelodatList.get(position).getTittle());
+                edtdate.setText(chothuelodatList.get(position).getDate());
+                edtgia.setText(chothuelodatList.get(position).getGia());
+                edtdientich.setText(chothuelodatList.get(position).getDientich());
 
-                edtlink.setText(muabanlodatList.get(position).getLink());
+                edtlink.setText(chothuelodatList.get(position).getLink());
 
 
 
@@ -198,22 +202,22 @@ public class MuabanLoDat_Adapter extends RecyclerView.Adapter<MuabanLoDat_Adapte
                         }else {
 
 
-                            muabanlodat =new Muabanlodat();
+                            chothuelodat =new Chothuelodat();
 
-                            muabanlodat.setTittle(edttiitle.getText().toString().trim());
-                            muabanlodat.setDate(edtdate.getText().toString().trim());
-                            muabanlodat.setGia(edtgia.getText().toString().trim());
-                            muabanlodat.setDientich(edtdientich.getText().toString().trim());
-                            muabanlodat.setLink(edtlink.getText().toString().trim());
-                            muabanlodat.setMamuabanlodat(muabanlodatList.get(position).getMamuabanlodat());
+                            chothuelodat.setTittle(edttiitle.getText().toString().trim());
+                            chothuelodat.setDate(edtdate.getText().toString().trim());
+                            chothuelodat.setGia(edtgia.getText().toString().trim());
+                            chothuelodat.setDientich(edtdientich.getText().toString().trim());
+                            chothuelodat.setLink(edtlink.getText().toString().trim());
+                            chothuelodat.setMachothuelodat(chothuelodatList.get(position).getMachothuelodat());
 
 
-                            muabanlodatDAO = new MuabanlodatDAO(context);
+                            chothuelodatDAO = new ChothuelodatDAO(context);
 
-                            long resurt = muabanlodatDAO.update(muabanlodat);
+                            long resurt = chothuelodatDAO.update(chothuelodat);
                             if(resurt>0){
                                 Toast.makeText(context,"Update Thành Công!",Toast.LENGTH_SHORT).show();
-                                muabanlodatList=muabanlodatDAO.getAll();
+                                chothuelodatList=chothuelodatDAO.getAll();
                                 notifyDataSetChanged();
 
                                 alertDialog.dismiss();
@@ -241,7 +245,7 @@ public class MuabanLoDat_Adapter extends RecyclerView.Adapter<MuabanLoDat_Adapte
         holder.xemthem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Muabanlodat tinTuc = muabanlodatList.get(position);
+                Chothuelodat tinTuc = chothuelodatList.get(position);
                 Intent intent = new Intent(context, WebView_Chothue_Canho.class);
                 intent.putExtra("link", tinTuc.link);
                 context.startActivity(intent);
@@ -250,18 +254,19 @@ public class MuabanLoDat_Adapter extends RecyclerView.Adapter<MuabanLoDat_Adapte
         });
 
 
+
     }
 
     @Override
     public int getItemCount() {
-        return muabanlodatList.size();
+        return chothuelodatList.size();
     }
 
-    public class MuabanLoDatHolder extends RecyclerView.ViewHolder {
+    public class ChothueLoDatHolder extends RecyclerView.ViewHolder {
         TextView tittile,date,gia;
         Button btnSet;
         ImageView xemthem,update,xoa;
-        public MuabanLoDatHolder(@NonNull View itemView) {
+        public ChothueLoDatHolder(@NonNull View itemView) {
             super(itemView);
             tittile=itemView.findViewById(R.id.tvtittle);
             date=itemView.findViewById(R.id.tvdate);
@@ -283,17 +288,17 @@ public class MuabanLoDat_Adapter extends RecyclerView.Adapter<MuabanLoDat_Adapte
     private Filter qLnguoidungFilter=new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<Muabanlodat> filteredlist=new ArrayList<>();
+            List<Chothuelodat> filteredlist=new ArrayList<>();
 
             if(constraint ==null || constraint.length()==0){
-                muabanlodatDAO=new MuabanlodatDAO(context);
-                muabanlodatList=muabanlodatDAO.getAll();
-                filteredlist.addAll(muabanlodatList);
+                chothuelodatDAO=new ChothuelodatDAO(context);
+                chothuelodatList=chothuelodatDAO.getAll();
+                filteredlist.addAll(chothuelodatList);
             }else {
                 String filterPattern=constraint.toString().toLowerCase().trim();
-                muabanlodatDAO=new MuabanlodatDAO(context);
-                muabanlodatList=muabanlodatDAO.getAll();
-                for (Muabanlodat item: muabanlodatList){
+                chothuelodatDAO=new ChothuelodatDAO(context);
+                chothuelodatList=chothuelodatDAO.getAll();
+                for (Chothuelodat item: chothuelodatList){
                     if (item.tittle.toLowerCase().contains(filterPattern)|| item.date.toLowerCase().contains(filterPattern)){
                         filteredlist.add(item);
                     }
@@ -309,8 +314,8 @@ public class MuabanLoDat_Adapter extends RecyclerView.Adapter<MuabanLoDat_Adapte
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            muabanlodatList.clear();
-            muabanlodatList.addAll((List) results.values);
+            chothuelodatList.clear();
+            chothuelodatList.addAll((List) results.values);
             notifyDataSetChanged();
         }
     };

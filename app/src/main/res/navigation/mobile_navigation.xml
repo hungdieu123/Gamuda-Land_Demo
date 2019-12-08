@@ -16,6 +16,11 @@
         android:name="com.example.gamudaland.Activity.Can_Ho.CanHo_Fragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
+    <fragment
+        android:id="@+id/nav_hoadon"
+        android:name="com.example.gamudaland.Activity.Hoa_Don.HoaDon_Fragment"
+        android:label="Hóa Đơn"
+        tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
