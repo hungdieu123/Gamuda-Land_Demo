@@ -18,8 +18,7 @@ import java.io.OutputStream;
 
 
 public class DataBase extends SQLiteOpenHelper {
-    private ChothueLodat_Fragment chothueLodat_fragment;
-    private MuaBanLoDat_Fragment muaBanLoDat_fragment;
+
     private static String DB_NAME = "Database.db";
 
 

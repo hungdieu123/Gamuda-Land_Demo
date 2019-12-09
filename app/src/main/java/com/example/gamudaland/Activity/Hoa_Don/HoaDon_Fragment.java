@@ -35,8 +35,8 @@ public class HoaDon_Fragment extends Fragment {
     }
     public void addTab(ViewPager viewPager){
         Hoadon_PagerAdapter adapter=new Hoadon_PagerAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFrag("Mua Bán");
-        adapter.addFrag("Cho Thuê");
+        adapter.addFrag("Hóa Đơn Nhập");
+        adapter.addFrag("Hóa Đơn Xuất");
         viewPager.setAdapter(adapter);
     }
 

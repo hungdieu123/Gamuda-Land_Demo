@@ -21,10 +21,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.example.gamudaland.Adapter.LoDat.Muabanlodat_Adapter;
+import com.example.gamudaland.Adapter.HoaDon.Hoadonnhap_Adapter;
+
+import com.example.gamudaland.Model.Hoadonnhap;
 import com.example.gamudaland.Model.Muabanlodat;
 import com.example.gamudaland.R;
-import com.example.gamudaland.SQLDAO.MuabanlodatDAO;
+import com.example.gamudaland.SQLDAO.HoadonnhapDAO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -37,47 +39,51 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
 public class Hoadonnhap_Fragment extends Fragment {
-    private MuabanlodatDAO muabanlodatDAO;
+    private HoadonnhapDAO muabanlodatDAO;
     private RecyclerView recyclerView;
     AlertDialog alertDialog;
-    private Muabanlodat_Adapter muabanLoDat_adapter;
-    private List<Muabanlodat> muabanlodats;
+    private Hoadonnhap_Adapter muabanLoDat_adapter;
+    private List<Hoadonnhap> hoadonnhaps;
     FloatingActionButton floatingActionButton;
-    private Muabanlodat muabanlodat;
+    private Hoadonnhap hoadonnhap;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_muabanlodat, container, false);
-        recyclerView=view.findViewById(R.id.muabanlodat_rcview);
-        floatingActionButton=view.findViewById(R.id.floatingActionButton1);
+        View view = inflater.inflate(R.layout.fragment_hoadonnhap, container, false);
+        recyclerView=view.findViewById(R.id.hoadonnhap_rcview);
+        floatingActionButton=view.findViewById(R.id.floatingActionButton3);
 
-        muabanlodat=new Muabanlodat();
+        hoadonnhap=new Hoadonnhap();
 
-        muabanlodatDAO=new MuabanlodatDAO(getActivity());
-        muabanlodats=muabanlodatDAO.getAll();
+
+        muabanlodatDAO=new HoadonnhapDAO(getActivity());
+        hoadonnhaps=muabanlodatDAO.getAll();
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
-                View dialog1  = LayoutInflater.from(getActivity()).inflate(R.layout.update_chothuelodat,null);
+                View dialog1  = LayoutInflater.from(getActivity()).inflate(R.layout.update_hoadonnhap,null);
                 builder1.setView(dialog1);
 
-                final TextInputEditText edttiitle,edtdate,edtgia,edtdientich,edtlink,edtma;
+                final TextInputEditText edttieude,edtdate,edtgia,edtdientich,edttheloai;
                 final Button ok1,cancel1,btnSET;
 
                 ok1=dialog1.findViewById(R.id.btnok);
                 btnSET=dialog1.findViewById(R.id.btnSet);
-                edttiitle=dialog1.findViewById(R.id.edttittle);
+
+                edttieude=dialog1.findViewById(R.id.edttittle);
+
                 edtdate=dialog1.findViewById(R.id.edtdate);
                 edtgia=dialog1.findViewById(R.id.edtgia);
                 edtdientich=dialog1.findViewById(R.id.edtdientich);
-                edtlink=dialog1.findViewById(R.id.edtlink);
+                edttheloai=dialog1.findViewById(R.id.edttheloai);
                 btnSET.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -100,11 +106,11 @@ public class Hoadonnhap_Fragment extends Fragment {
                     @Override
                     public void onClick(View v) {
 
-                        String tittle = edttiitle.getText().toString().trim();
+                        String tittle = edttieude.getText().toString().trim();
                         String date  = edtdate.getText().toString().trim();
                         String gia = edtgia.getText().toString().trim();
                         String dientich = edtdientich.getText().toString().trim();
-                        String link = edtlink.getText().toString().trim();
+                        String link = edtdientich.getText().toString().trim();
 
                         if (tittle.equals("")){
                             Toast.makeText(getActivity(),"Vui Lòng Không Để Trống Tiêu Đề!",Toast.LENGTH_SHORT).show();
@@ -120,23 +126,23 @@ public class Hoadonnhap_Fragment extends Fragment {
                             Random r = new Random();
                             int i1 = (r.nextInt(8000) + 65);
 
-                            muabanlodat =new Muabanlodat();
+                            hoadonnhap =new Hoadonnhap();
 
-                            muabanlodat.setTittle(edttiitle.getText().toString().trim());
-                            muabanlodat.setDate(edtdate.getText().toString().trim());
-                            muabanlodat.setGia(edtgia.getText().toString().trim());
-                            muabanlodat.setDientich(edtdientich.getText().toString().trim());
-                            muabanlodat.setLink(edtlink.getText().toString().trim());
-                            muabanlodat.setMamuabanlodat(String.valueOf(i1));
+                            hoadonnhap.setDientichnhap(edtdientich.getText().toString().trim());
+                            hoadonnhap.setMahoadonnhap(edtdate.getText().toString().trim());
+                            hoadonnhap.setGianhap(edtgia.getText().toString().trim());
+                            hoadonnhap.setDatenhap(edtdientich.getText().toString().trim());
+                            hoadonnhap.setTheloainhap(edttheloai.getText().toString().trim());
+                            hoadonnhap.setTieudenhap(String.valueOf(i1));
 
-                            muabanlodatDAO = new MuabanlodatDAO(getActivity());
+                            muabanlodatDAO = new HoadonnhapDAO(getActivity());
 
-                            long resurt = muabanlodatDAO.insert(muabanlodat);
+                            long resurt = muabanlodatDAO.insert(hoadonnhap);
                             if(resurt>0){
                                 Toast.makeText(getActivity(),"Thêm Thành Công!",Toast.LENGTH_SHORT).show();
 
-                                muabanlodats=muabanlodatDAO.getAll();
-                                muabanLoDat_adapter=new Muabanlodat_Adapter(muabanlodats,getActivity());
+                                hoadonnhaps=muabanlodatDAO.getAll();
+                                muabanLoDat_adapter=new Hoadonnhap_Adapter(hoadonnhaps,getActivity());
                                 StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
                                 recyclerView.setLayoutManager(gridLayoutManager);
                                 recyclerView.setAdapter(muabanLoDat_adapter);
@@ -161,23 +167,15 @@ public class Hoadonnhap_Fragment extends Fragment {
         });
 
 
-        muabanLoDat_adapter=new Muabanlodat_Adapter(muabanlodats,getActivity());
+        muabanLoDat_adapter=new Hoadonnhap_Adapter(hoadonnhaps,getActivity());
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(muabanLoDat_adapter);
 
         setHasOptionsMenu(true);
-
-
-
         return view;
     }
-    public void muabanlodat(){
-        String url = "https://batdongsan.com.vn/Modules/RSS/RssDetail.aspx?catid=283&typeid=1";
-        Data data = new Data();
-        data.execute(url);
 
-    }
 
 
 
@@ -209,101 +207,4 @@ public class Hoadonnhap_Fragment extends Fragment {
             }
         });
     }
-
-
-
-    class Data extends AsyncTask<String, Long, Muabanlodat> {
-
-
-        @Override
-        protected Muabanlodat doInBackground(String... strings) {
-            String link = strings[0];
-            try {
-                URL url = new URL(link);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-                InputStream inputStream = httpURLConnection.getInputStream();
-                //Khởi tạo đối tượng bằng XML
-                XmlPullParserFactory xmlPullParserFactory = XmlPullParserFactory.newInstance();
-
-                XmlPullParser xmlPullParser = xmlPullParserFactory.newPullParser();
-
-                xmlPullParser.setInput(inputStream, "utf-8");
-
-
-                int eventType = xmlPullParser.getEventType();
-
-                String text = "";
-                while (eventType != xmlPullParser.END_DOCUMENT) {
-                    eventType = xmlPullParser.getEventType();
-                    String tag = xmlPullParser.getName();
-                    switch (eventType) {
-                        //Bắt đầu thẻ
-                        case XmlPullParser.START_TAG:
-                            if (tag.equalsIgnoreCase("item")) {
-
-                            }
-                            break;
-                        case XmlPullParser.TEXT:
-                            text = xmlPullParser.getText();
-                            break;
-                        case XmlPullParser.END_TAG:
-                            if (true) {
-
-
-                                if (tag.equalsIgnoreCase("title")) {
-                                    muabanlodat.setTittle(text);
-                                }else if (tag.equalsIgnoreCase("pubDate")) {
-                                    muabanlodat.setDate(text);
-                                } else if (tag.equalsIgnoreCase("url")) {
-//                                    tinTuc.image = text;
-                                } else if (tag.equalsIgnoreCase("link")) {
-                                    muabanlodat.setLink(text);
-                                    Random r = new Random();
-                                    int i1 = (r.nextInt(8000) + 65);
-                                    muabanlodat.setMamuabanlodat(String.valueOf(i1));
-                                    muabanlodat.setDientich(String.valueOf(i1));
-
-                                } else if (tag.equalsIgnoreCase("item")) {
-                                    muabanlodatDAO.insert(muabanlodat);
-                                }
-                            }
-                            break;
-
-                    }
-                    xmlPullParser.next();
-                }
-
-
-            } catch (MalformedURLException e) {
-                //url bị sai : url
-                e.printStackTrace();
-            } catch (IOException e) {
-                //Không kết nối đc : openConnection
-
-                e.printStackTrace();
-            } catch (XmlPullParserException e) {
-                //Sai định dạng : newInstance
-                e.printStackTrace();
-            }
-
-            return muabanlodat;
-        }
-
-        @Override
-        protected void onPostExecute(Muabanlodat muabanlodat) {
-            super.onPostExecute(muabanlodat);
-            muabanLoDat_adapter.notifyDataSetChanged();
-        }
-
-
-    }
-
-    @Override
-    public void onDetach() {
-        setHasOptionsMenu(false);
-        super.onDetach();
-    }
-
-
 }
