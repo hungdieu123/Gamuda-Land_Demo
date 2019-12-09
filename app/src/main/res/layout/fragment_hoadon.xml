@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -18,9 +18,9 @@
     <androidx.viewpager.widget.ViewPager
         android:layout_width="405dp"
         android:id="@+id/viewpager_Hoadon"
-        android:layout_height="678dp"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout_Hoadon" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
