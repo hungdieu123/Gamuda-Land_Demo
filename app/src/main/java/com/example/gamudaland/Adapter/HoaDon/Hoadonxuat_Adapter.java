@@ -3,7 +3,6 @@ package com.example.gamudaland.Adapter.HoaDon;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +15,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.example.gamudaland.Activity.Lo_Dat.WebView_Chothue_Canho;
-import com.example.gamudaland.Model.Hoadonnhap;
+import com.example.gamudaland.Model.Hoadonxuat;
 import com.example.gamudaland.R;
-import com.example.gamudaland.SQLDAO.HoadonnhapDAO;
+import com.example.gamudaland.SQLDAO.HoadonxuatDAO;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -29,41 +26,41 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
-public class Hoadonnhap_Adapter extends RecyclerView.Adapter<Hoadonnhap_Adapter.ChothueLoDatHolder> {
-    private List<Hoadonnhap> hoadonnhapList;
+public class Hoadonxuat_Adapter extends RecyclerView.Adapter<Hoadonxuat_Adapter.ChothueLoDatHolder> {
+    private List<Hoadonxuat> hoadonxuatList;
     private Context context;
     AlertDialog alertDialog;
-    private Hoadonnhap hoadonnhap;
-    private HoadonnhapDAO hoadonnhapDAO;
+    private Hoadonxuat hoadonxuat;
+    private HoadonxuatDAO hoadonxuatDAO;
 
 
 
 
-    public Hoadonnhap_Adapter(List<Hoadonnhap> hoadonnhapList, Context context) {
-        this.hoadonnhapList = hoadonnhapList;
+    public Hoadonxuat_Adapter(List<Hoadonxuat> hoadonxuatList, Context context) {
+        this.hoadonxuatList = hoadonxuatList;
         this.context = context;
 
     }
 
     @NonNull
     @Override
-    public Hoadonnhap_Adapter.ChothueLoDatHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Hoadonxuat_Adapter.ChothueLoDatHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_hoadonnhap,parent,false);
         return new ChothueLoDatHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final Hoadonnhap_Adapter.ChothueLoDatHolder holder, final int position) {
-        hoadonnhapDAO=new HoadonnhapDAO(context);
-        hoadonnhap=new Hoadonnhap();
+    public void onBindViewHolder(@NonNull final Hoadonxuat_Adapter.ChothueLoDatHolder holder, final int position) {
+        hoadonxuatDAO=new HoadonxuatDAO(context);
+        hoadonxuat=new Hoadonxuat();
 
 
 
-        holder.tieude.setText(hoadonnhapList.get(position).getTieudenhap());
-        holder.theloai.setText(hoadonnhapList.get(position).getTheloainhap());
-        holder.date.setText(hoadonnhapList.get(position).getDatenhap());
-        holder.dientich.setText(hoadonnhapList.get(position).getDientichnhap());
-        holder.gia.setText(hoadonnhapList.get(position).getGianhap());
+        holder.tieude.setText(hoadonxuatList.get(position).getTieudexuat());
+        holder.theloai.setText(hoadonxuatList.get(position).getTheloaixuat());
+        holder.date.setText(hoadonxuatList.get(position).getDatexuat());
+        holder.dientich.setText(hoadonxuatList.get(position).getDientichxuat());
+        holder.gia.setText(hoadonxuatList.get(position).getGiaxuat());
 
 
 
@@ -81,9 +78,9 @@ public class Hoadonnhap_Adapter extends RecyclerView.Adapter<Hoadonnhap_Adapter.
                     @Override
                     public void onClick(View v) {
 
-                        for (int i=0;i<hoadonnhapList.size();i++){
-                        hoadonnhapDAO.delete(hoadonnhapList.get(i).getMahoadonnhap());
-                        hoadonnhapList.remove(i);
+                        for (int i=0;i<hoadonxuatList.size();i++){
+                        hoadonxuatDAO.delete(hoadonxuatList.get(i).getMahoadonxuat());
+                        hoadonxuatList.remove(i);
                         }
                         notifyDataSetChanged();
                         alertDialog.dismiss();
@@ -179,18 +176,18 @@ public class Hoadonnhap_Adapter extends RecyclerView.Adapter<Hoadonnhap_Adapter.
                             Random r = new Random();
                             int i1 = (r.nextInt(8000) + 65);
 
-                            hoadonnhap =new Hoadonnhap();
+                            hoadonxuat =new Hoadonxuat();
 
-                            hoadonnhap.setDientichnhap(edtdientich.getText().toString().trim());
-                            hoadonnhap.setMahoadonnhap(hoadonnhapList.get(position).getMahoadonnhap());
-                            hoadonnhap.setGianhap(edtgia.getText().toString().trim());
-                            hoadonnhap.setDatenhap(edtdientich.getText().toString().trim());
-                            hoadonnhap.setTheloainhap(edttheloai.getText().toString().trim());
-                            hoadonnhap.setTieudenhap(hoadonnhapList.get(position).getMahoadonnhap());
+                            hoadonxuat.setDientichxuat(edtdientich.getText().toString().trim());
+                            hoadonxuat.setMahoadonxuat(hoadonxuatList.get(position).getMahoadonxuat());
+                            hoadonxuat.setGiaxuat(edtgia.getText().toString().trim());
+                            hoadonxuat.setDatexuat(edtdientich.getText().toString().trim());
+                            hoadonxuat.setTheloaixuat(edttheloai.getText().toString().trim());
+                            hoadonxuat.setTieudexuat(hoadonxuatList.get(position).getMahoadonxuat());
 
-                            hoadonnhapDAO = new HoadonnhapDAO(context);
+                            hoadonxuatDAO = new HoadonxuatDAO(context);
 
-                            long resurt = hoadonnhapDAO.update(hoadonnhap);
+                            long resurt = hoadonxuatDAO.update(hoadonxuat);
                             if(resurt>0){
                                 Toast.makeText(context,"Update Thành Công!",Toast.LENGTH_SHORT).show();
 
@@ -218,7 +215,7 @@ public class Hoadonnhap_Adapter extends RecyclerView.Adapter<Hoadonnhap_Adapter.
 
     @Override
     public int getItemCount() {
-        return hoadonnhapList.size();
+        return hoadonxuatList.size();
     }
 
     public class ChothueLoDatHolder extends RecyclerView.ViewHolder {
@@ -243,24 +240,24 @@ public class Hoadonnhap_Adapter extends RecyclerView.Adapter<Hoadonnhap_Adapter.
 
 
     public Filter getFilter() {
-        return qlhoadonnhapFilter;
+        return qlhoadonxuatFilter;
     }
 
-    private Filter qlhoadonnhapFilter=new Filter() {
+    private Filter qlhoadonxuatFilter=new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<Hoadonnhap> filteredlist=new ArrayList<>();
+            List<Hoadonxuat> filteredlist=new ArrayList<>();
 
             if(constraint ==null || constraint.length()==0){
-                hoadonnhapDAO=new HoadonnhapDAO(context);
-                hoadonnhapList=hoadonnhapDAO.getAll();
-                filteredlist.addAll(hoadonnhapList);
+                hoadonxuatDAO=new HoadonxuatDAO(context);
+                hoadonxuatList=hoadonxuatDAO.getAll();
+                filteredlist.addAll(hoadonxuatList);
             }else {
                 String filterPattern=constraint.toString().toLowerCase().trim();
-                hoadonnhapDAO=new HoadonnhapDAO(context);
-                hoadonnhapList=hoadonnhapDAO.getAll();
-                for (Hoadonnhap item: hoadonnhapList){
-                    if (item.tieudenhap.toLowerCase().contains(filterPattern)|| item.datenhap.toLowerCase().contains(filterPattern)){
+                hoadonxuatDAO=new HoadonxuatDAO(context);
+                hoadonxuatList=hoadonxuatDAO.getAll();
+                for (Hoadonxuat item: hoadonxuatList){
+                    if (item.tieudexuat.toLowerCase().contains(filterPattern)|| item.datexuat.toLowerCase().contains(filterPattern)){
                         filteredlist.add(item);
                     }
                 }
@@ -275,8 +272,8 @@ public class Hoadonnhap_Adapter extends RecyclerView.Adapter<Hoadonnhap_Adapter.
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            hoadonnhapList.clear();
-            hoadonnhapList.addAll((List) results.values);
+            hoadonxuatList.clear();
+            hoadonxuatList.addAll((List) results.values);
             notifyDataSetChanged();
         }
     };

@@ -64,7 +64,10 @@ public class Chothuelodat_Adapter extends RecyclerView.Adapter<Chothuelodat_Adap
                 Chothuelodat tinTuc = chothuelodatList.get(position);
                 Intent intent = new Intent(context, WebView_Chothue_Canho.class);
                 intent.putExtra("link", tinTuc.link);
-                context.startActivity(intent);
+                if (tinTuc.link!=null){
+                    context.startActivity(intent);
+                }
+
 
             }
         });

@@ -78,12 +78,15 @@ public class Hoadonnhap_Fragment extends Fragment {
                 ok1=dialog1.findViewById(R.id.btnok);
                 btnSET=dialog1.findViewById(R.id.btnSet);
 
-                edttieude=dialog1.findViewById(R.id.edttittle);
 
-                edtdate=dialog1.findViewById(R.id.edtdate);
-                edtgia=dialog1.findViewById(R.id.edtgia);
-                edtdientich=dialog1.findViewById(R.id.edtdientich);
+
+                edttieude=dialog1.findViewById(R.id.edttieude);
+                edtdate=dialog1.findViewById(R.id.edtdatehoadon);
+                edtgia=dialog1.findViewById(R.id.edtdatehoadon);
+                edtdientich=dialog1.findViewById(R.id.edtdientichhoadon);
                 edttheloai=dialog1.findViewById(R.id.edttheloai);
+
+
                 btnSET.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
