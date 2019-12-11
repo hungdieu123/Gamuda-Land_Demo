@@ -132,11 +132,11 @@ public class Hoadonnhap_Fragment extends Fragment {
                             hoadonnhap =new Hoadonnhap();
 
                             hoadonnhap.setDientichnhap(edtdientich.getText().toString().trim());
-                            hoadonnhap.setMahoadonnhap(edtdate.getText().toString().trim());
+                            hoadonnhap.setMahoadonnhap(String.valueOf(i1));
                             hoadonnhap.setGianhap(edtgia.getText().toString().trim());
                             hoadonnhap.setDatenhap(edtdientich.getText().toString().trim());
                             hoadonnhap.setTheloainhap(edttheloai.getText().toString().trim());
-                            hoadonnhap.setTieudenhap(String.valueOf(i1));
+                            hoadonnhap.setTieudenhap(edttieude.getText().toString().trim());
 
                             muabanlodatDAO = new HoadonnhapDAO(getActivity());
 

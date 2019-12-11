@@ -57,10 +57,10 @@ public class Hoadonxuat_Adapter extends RecyclerView.Adapter<Hoadonxuat_Adapter.
 
 
         holder.tieude.setText(hoadonxuatList.get(position).getTieudexuat());
-        holder.theloai.setText(hoadonxuatList.get(position).getTheloaixuat());
+        holder.theloai.setText("Thể Loại: "+hoadonxuatList.get(position).getTheloaixuat());
         holder.date.setText(hoadonxuatList.get(position).getDatexuat());
-        holder.dientich.setText(hoadonxuatList.get(position).getDientichxuat());
-        holder.gia.setText(hoadonxuatList.get(position).getGiaxuat());
+        holder.dientich.setText(hoadonxuatList.get(position).getDientichxuat()+"m2");
+        holder.gia.setText("Giá: "+hoadonxuatList.get(position).getGiaxuat()+"$");
 
 
 
@@ -78,10 +78,10 @@ public class Hoadonxuat_Adapter extends RecyclerView.Adapter<Hoadonxuat_Adapter.
                     @Override
                     public void onClick(View v) {
 
-                        for (int i=0;i<hoadonxuatList.size();i++){
-                        hoadonxuatDAO.delete(hoadonxuatList.get(i).getMahoadonxuat());
-                        hoadonxuatList.remove(i);
-                        }
+
+                        hoadonxuatDAO.delete(hoadonxuatList.get(position).getMahoadonxuat());
+                        hoadonxuatList.remove(position);
+
                         notifyDataSetChanged();
                         alertDialog.dismiss();
 
@@ -116,12 +116,18 @@ public class Hoadonxuat_Adapter extends RecyclerView.Adapter<Hoadonxuat_Adapter.
 
                 edttieude=dialog1.findViewById(R.id.edttieude);
                 edtdate=dialog1.findViewById(R.id.edtdatehoadon);
-                edtgia=dialog1.findViewById(R.id.edtdatehoadon);
+                edtgia=dialog1.findViewById(R.id.edtgiahoadon);
                 edtdientich=dialog1.findViewById(R.id.edtdientichhoadon);
                 edttheloai=dialog1.findViewById(R.id.edttheloai);
                 ok1=dialog1.findViewById(R.id.btnok);
                 btnSET=dialog1.findViewById(R.id.btnSet);
                 cancel1=dialog1.findViewById(R.id.btncancelhoadon);
+
+                edttieude.setText(hoadonxuatList.get(position).getTieudexuat());
+                edttheloai.setText(hoadonxuatList.get(position).getTheloaixuat());
+                edtdate.setText(hoadonxuatList.get(position).getDatexuat());
+                edtdientich.setText(hoadonxuatList.get(position).getDientichxuat());
+                edtgia.setText(hoadonxuatList.get(position).getGiaxuat());
 
                 cancel1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -181,18 +187,19 @@ public class Hoadonxuat_Adapter extends RecyclerView.Adapter<Hoadonxuat_Adapter.
                             hoadonxuat.setDientichxuat(edtdientich.getText().toString().trim());
                             hoadonxuat.setMahoadonxuat(hoadonxuatList.get(position).getMahoadonxuat());
                             hoadonxuat.setGiaxuat(edtgia.getText().toString().trim());
-                            hoadonxuat.setDatexuat(edtdientich.getText().toString().trim());
+                            hoadonxuat.setDatexuat(edtdate.getText().toString().trim());
                             hoadonxuat.setTheloaixuat(edttheloai.getText().toString().trim());
-                            hoadonxuat.setTieudexuat(hoadonxuatList.get(position).getMahoadonxuat());
+                            hoadonxuat.setTieudexuat(edttieude.getText().toString().trim());
 
                             hoadonxuatDAO = new HoadonxuatDAO(context);
 
                             long resurt = hoadonxuatDAO.update(hoadonxuat);
                             if(resurt>0){
                                 Toast.makeText(context,"Update Thành Công!",Toast.LENGTH_SHORT).show();
-
-                                notifyDataSetChanged();
                                 alertDialog.dismiss();
+                                hoadonxuatDAO = new HoadonxuatDAO(context);
+                                hoadonxuatList=hoadonxuatDAO.getAll();
+                                notifyDataSetChanged();
 
 
                             }else {

@@ -24,10 +24,10 @@
             app:srcCompat="@drawable/nha" />
 
         <TextView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/tvtieude"
-            android:layout_width="226dp"
-            android:layout_height="36dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:text="Tiêu Đề"
@@ -53,44 +53,40 @@
             app:layout_constraintStart_toStartOf="@+id/tvngay"
             app:layout_constraintTop_toBottomOf="@+id/tvngay" />
 
+
         <TextView
             android:id="@+id/tvgia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
             android:text="12000$"
             android:textColor="#FF0000"
-            app:layout_constraintEnd_toEndOf="@+id/tvtieude"
-            app:layout_constraintTop_toBottomOf="@+id/tvtieude" />
+            app:layout_constraintStart_toStartOf="@+id/tvtheloai"
+            app:layout_constraintTop_toBottomOf="@+id/tvtheloai" />
 
+        <!--        <ImageView-->
+<!--            android:id="@+id/ivxemthem"-->
+<!--            android:layout_width="40dp"-->
+
+<!--            android:layout_height="23dp"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:layout_marginRight="4dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.911"-->
+<!--            app:srcCompat="@drawable/xemthem" />-->
 
         <TextView
             android:id="@+id/tvdientich"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:text="70m2"
             android:textColor="#3F51B5"
-            app:layout_constraintBottom_toBottomOf="@+id/ivupdate"
-            app:layout_constraintEnd_toStartOf="@+id/ivupdate"
-            app:layout_constraintTop_toTopOf="@+id/ivupdate"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <ImageView
-            android:id="@+id/ivxemthem"
-            android:layout_width="40dp"
-
-            android:layout_height="23dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.911"
-            app:srcCompat="@drawable/xemthem" />
+            app:layout_constraintBottom_toTopOf="@+id/ivxoa"
+            app:layout_constraintEnd_toEndOf="@+id/ivxoa"
+            app:layout_constraintHorizontal_bias="0.529"
+            app:layout_constraintStart_toStartOf="@+id/ivupdate" />
 
         <ImageView
             android:id="@+id/ivxoa"
@@ -98,10 +94,9 @@
             android:layout_height="23dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ivxemthem"
-            app:layout_constraintEnd_toStartOf="@+id/ivxemthem"
-            app:layout_constraintTop_toTopOf="@+id/ivxemthem"
-            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/delete" />
 
         <ImageView

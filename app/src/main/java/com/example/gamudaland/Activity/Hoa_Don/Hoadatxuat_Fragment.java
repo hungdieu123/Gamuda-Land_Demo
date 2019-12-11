@@ -82,7 +82,7 @@ public class Hoadatxuat_Fragment extends Fragment {
 
                 edttieude=dialog1.findViewById(R.id.edttieude);
                 edtdate=dialog1.findViewById(R.id.edtdatehoadon);
-                edtgia=dialog1.findViewById(R.id.edtdatehoadon);
+                edtgia=dialog1.findViewById(R.id.edtgiahoadon);
                 edtdientich=dialog1.findViewById(R.id.edtdientichhoadon);
                 edttheloai=dialog1.findViewById(R.id.edttheloai);
 
@@ -132,11 +132,11 @@ public class Hoadatxuat_Fragment extends Fragment {
                             hoadonxuat =new Hoadonxuat();
 
                             hoadonxuat.setDientichxuat(edtdientich.getText().toString().trim());
-                            hoadonxuat.setMahoadonxuat(edtdate.getText().toString().trim());
+                            hoadonxuat.setMahoadonxuat(String.valueOf(i1));
                             hoadonxuat.setGiaxuat(edtgia.getText().toString().trim());
-                            hoadonxuat.setDatexuat(edtdientich.getText().toString().trim());
+                            hoadonxuat.setDatexuat(edtdate.getText().toString().trim());
                             hoadonxuat.setTheloaixuat(edttheloai.getText().toString().trim());
-                            hoadonxuat.setTieudexuat(String.valueOf(i1));
+                            hoadonxuat.setTieudexuat(edttieude.getText().toString().trim());
 
                             muabanlodatDAO = new HoadonxuatDAO(getActivity());
 

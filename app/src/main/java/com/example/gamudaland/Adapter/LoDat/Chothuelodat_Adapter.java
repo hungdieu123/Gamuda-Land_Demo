@@ -198,8 +198,6 @@ public class Chothuelodat_Adapter extends RecyclerView.Adapter<Chothuelodat_Adap
                             Toast.makeText(context,"Vui Lòng Không Để Trống Giá!",Toast.LENGTH_SHORT).show();
                         }else if (dientich.equals("")){
                             Toast.makeText(context,"Vui Lòng Không Để Trống Diện TÍch!",Toast.LENGTH_SHORT).show();
-                        }else if (link.equals("")){
-                            Toast.makeText(context,"Vui Lòng Không Để Trống Link!",Toast.LENGTH_SHORT).show();
                         }else {
 
 

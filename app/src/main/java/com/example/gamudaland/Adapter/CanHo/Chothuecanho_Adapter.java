@@ -67,7 +67,10 @@ public class Chothuecanho_Adapter extends RecyclerView.Adapter<Chothuecanho_Adap
                 Chothuecanho tinTuc = chothuecanhoList.get(position);
                 Intent intent = new Intent(context, WebView_Chothue_Canho.class);
                 intent.putExtra("link", tinTuc.link);
-                context.startActivity(intent);
+                if (chothuecanhoList.get(position).getLink().equals("")){
+                }else {
+                    context.startActivity(intent);
+                }
 
             }
         });
@@ -249,7 +252,11 @@ public class Chothuecanho_Adapter extends RecyclerView.Adapter<Chothuecanho_Adap
                 Chothuecanho tinTuc = chothuecanhoList.get(position);
                 Intent intent = new Intent(context, WebView_Chothue_Canho.class);
                 intent.putExtra("link", tinTuc.link);
-                context.startActivity(intent);
+                if (chothuecanhoList.get(position).getLink().equals("")){
+                    Toast.makeText(context,"Vui lòng cập nhập đường dẫn để xem chi tiết!",Toast.LENGTH_LONG).show();
+                }else {
+                    context.startActivity(intent);
+                }
 
             }
         });

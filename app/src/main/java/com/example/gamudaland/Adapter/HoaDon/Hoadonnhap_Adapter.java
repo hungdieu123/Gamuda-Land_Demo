@@ -60,10 +60,10 @@ public class Hoadonnhap_Adapter extends RecyclerView.Adapter<Hoadonnhap_Adapter.
 
 
         holder.tieude.setText(hoadonnhapList.get(position).getTieudenhap());
-        holder.theloai.setText(hoadonnhapList.get(position).getTheloainhap());
+        holder.theloai.setText("Thể Loại: "+hoadonnhapList.get(position).getTheloainhap());
         holder.date.setText(hoadonnhapList.get(position).getDatenhap());
-        holder.dientich.setText(hoadonnhapList.get(position).getDientichnhap());
-        holder.gia.setText(hoadonnhapList.get(position).getGianhap());
+        holder.dientich.setText(hoadonnhapList.get(position).getDientichnhap()+"m2");
+        holder.gia.setText("Giá: "+hoadonnhapList.get(position).getGianhap()+"$");
 
 
 
@@ -81,10 +81,10 @@ public class Hoadonnhap_Adapter extends RecyclerView.Adapter<Hoadonnhap_Adapter.
                     @Override
                     public void onClick(View v) {
 
-                        for (int i=0;i<hoadonnhapList.size();i++){
-                        hoadonnhapDAO.delete(hoadonnhapList.get(i).getMahoadonnhap());
-                        hoadonnhapList.remove(i);
-                        }
+
+                        hoadonnhapDAO.delete(hoadonnhapList.get(position).getMahoadonnhap());
+                        hoadonnhapList.remove(position);
+
                         notifyDataSetChanged();
                         alertDialog.dismiss();
 
@@ -119,12 +119,19 @@ public class Hoadonnhap_Adapter extends RecyclerView.Adapter<Hoadonnhap_Adapter.
 
                 edttieude=dialog1.findViewById(R.id.edttieude);
                 edtdate=dialog1.findViewById(R.id.edtdatehoadon);
-                edtgia=dialog1.findViewById(R.id.edtdatehoadon);
+                edtgia=dialog1.findViewById(R.id.edtgiahoadon);
                 edtdientich=dialog1.findViewById(R.id.edtdientichhoadon);
                 edttheloai=dialog1.findViewById(R.id.edttheloai);
+
                 ok1=dialog1.findViewById(R.id.btnok);
                 btnSET=dialog1.findViewById(R.id.btnSet);
                 cancel1=dialog1.findViewById(R.id.btncancelhoadon);
+
+                edttieude.setText(hoadonnhapList.get(position).getTieudenhap());
+                edttheloai.setText(hoadonnhapList.get(position).getTheloainhap());
+                edtdate.setText(hoadonnhapList.get(position).getDatenhap());
+                edtdientich.setText(hoadonnhapList.get(position).getDientichnhap());
+                edtgia.setText(hoadonnhapList.get(position).getGianhap());
 
                 cancel1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -184,16 +191,17 @@ public class Hoadonnhap_Adapter extends RecyclerView.Adapter<Hoadonnhap_Adapter.
                             hoadonnhap.setDientichnhap(edtdientich.getText().toString().trim());
                             hoadonnhap.setMahoadonnhap(hoadonnhapList.get(position).getMahoadonnhap());
                             hoadonnhap.setGianhap(edtgia.getText().toString().trim());
-                            hoadonnhap.setDatenhap(edtdientich.getText().toString().trim());
+                            hoadonnhap.setDatenhap(edtdate.getText().toString().trim());
                             hoadonnhap.setTheloainhap(edttheloai.getText().toString().trim());
-                            hoadonnhap.setTieudenhap(hoadonnhapList.get(position).getMahoadonnhap());
+                            hoadonnhap.setTieudenhap(edttieude.getText().toString().trim());
 
                             hoadonnhapDAO = new HoadonnhapDAO(context);
 
                             long resurt = hoadonnhapDAO.update(hoadonnhap);
                             if(resurt>0){
                                 Toast.makeText(context,"Update Thành Công!",Toast.LENGTH_SHORT).show();
-
+                                hoadonnhapDAO = new HoadonnhapDAO(context);
+                                hoadonnhapList=hoadonnhapDAO.getAll();
                                 notifyDataSetChanged();
                                 alertDialog.dismiss();
 

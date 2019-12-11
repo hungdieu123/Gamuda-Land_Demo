@@ -20,12 +20,12 @@ public class HoadonxuatDAO {
 
     private String USER_TABLE = "Hoadonxuat";
 
-    public String THELOAINHAP = "theloaixuat";
-    public String TIEUDENHAP = "tieudexuat";
-    public String DATENHAP = "datexuat";
-    public String GIANHAP = "giaxuat";
-    public String MAHOADONNHAP = "mahoadonxuat";
-    public String DIENTICHNHAP = "dientichxuat";
+    public String THELOAIXUAT = "theloaixuat";
+    public String TIEUDEXUAT = "tieudexuat";
+    public String DATEXUAT = "datexuat";
+    public String GIAXUAT = "giaxuat";
+    public String MAHOADONXUAT = "mahoadonxuat";
+    public String DIENTICHXUAT = "dientichxuat";
 
 
 
@@ -46,12 +46,12 @@ public class HoadonxuatDAO {
 
                     Hoadonxuat hoadonxuat = new Hoadonxuat();
 
-                    hoadonxuat.setTieudexuat(cursor.getString(cursor.getColumnIndex(TIEUDENHAP)));
-                    hoadonxuat.setTheloaixuat(cursor.getString(cursor.getColumnIndex(THELOAINHAP)));
-                    hoadonxuat.setDatexuat(cursor.getString(cursor.getColumnIndex(DATENHAP)));
-                    hoadonxuat.setGiaxuat(cursor.getString(cursor.getColumnIndex(GIANHAP)));
-                    hoadonxuat.setMahoadonxuat(cursor.getString(cursor.getColumnIndex(MAHOADONNHAP)));
-                    hoadonxuat.setDientichxuat(cursor.getString(cursor.getColumnIndex(DIENTICHNHAP)));
+                    hoadonxuat.setTieudexuat(cursor.getString(cursor.getColumnIndex(TIEUDEXUAT)));
+                    hoadonxuat.setTheloaixuat(cursor.getString(cursor.getColumnIndex(THELOAIXUAT)));
+                    hoadonxuat.setDatexuat(cursor.getString(cursor.getColumnIndex(DATEXUAT)));
+                    hoadonxuat.setGiaxuat(cursor.getString(cursor.getColumnIndex(GIAXUAT)));
+                    hoadonxuat.setMahoadonxuat(cursor.getString(cursor.getColumnIndex(MAHOADONXUAT)));
+                    hoadonxuat.setDientichxuat(cursor.getString(cursor.getColumnIndex(DIENTICHXUAT)));
 
 
 
@@ -70,12 +70,12 @@ public class HoadonxuatDAO {
         SQLiteDatabase sqLiteDatabase = dataBase.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(TIEUDENHAP, chothuecanho.getTieudexuat());
-        contentValues.put(THELOAINHAP, chothuecanho.getTheloaixuat());
-        contentValues.put(DATENHAP, chothuecanho.getDatexuat());
-        contentValues.put(GIANHAP,chothuecanho.getGiaxuat());
-        contentValues.put(MAHOADONNHAP, chothuecanho.getMahoadonxuat());
-        contentValues.put(DIENTICHNHAP,chothuecanho.getDientichxuat());
+        contentValues.put(TIEUDEXUAT, chothuecanho.getTieudexuat());
+        contentValues.put(THELOAIXUAT, chothuecanho.getTheloaixuat());
+        contentValues.put(DATEXUAT, chothuecanho.getDatexuat());
+        contentValues.put(GIAXUAT,chothuecanho.getGiaxuat());
+        contentValues.put(MAHOADONXUAT, chothuecanho.getMahoadonxuat());
+        contentValues.put(DIENTICHXUAT,chothuecanho.getDientichxuat());
 
 
 
@@ -89,21 +89,21 @@ public class HoadonxuatDAO {
         SQLiteDatabase sqLiteDatabase = dataBase.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(TIEUDENHAP, hoadonxuat.getTieudexuat());
-        contentValues.put(THELOAINHAP, hoadonxuat.getTheloaixuat());
-        contentValues.put(DATENHAP, hoadonxuat.getDatexuat());
-        contentValues.put(GIANHAP,hoadonxuat.getGiaxuat());
-        contentValues.put(MAHOADONNHAP, hoadonxuat.getMahoadonxuat());
-        contentValues.put(DIENTICHNHAP,hoadonxuat.getDientichxuat());
+        contentValues.put(TIEUDEXUAT, hoadonxuat.getTieudexuat());
+        contentValues.put(THELOAIXUAT, hoadonxuat.getTheloaixuat());
+        contentValues.put(DATEXUAT, hoadonxuat.getDatexuat());
+        contentValues.put(GIAXUAT,hoadonxuat.getGiaxuat());
+        contentValues.put(MAHOADONXUAT, hoadonxuat.getMahoadonxuat());
+        contentValues.put(DIENTICHXUAT,hoadonxuat.getDientichxuat());
 
-        long result = sqLiteDatabase.update(USER_TABLE,contentValues, MAHOADONNHAP + "=?", new String[]{hoadonxuat.getMahoadonxuat()});
+        long result = sqLiteDatabase.update(USER_TABLE,contentValues, MAHOADONXUAT + "=?", new String[]{hoadonxuat.getMahoadonxuat()});
         sqLiteDatabase.close();
         return result;
     }
     public void delete(String id) {
         SQLiteDatabase sqLiteDatabase = dataBase.getWritableDatabase();
 
-        sqLiteDatabase.delete(USER_TABLE, MAHOADONNHAP + "=?", new String[]{id});
+        sqLiteDatabase.delete(USER_TABLE, MAHOADONXUAT + "=?", new String[]{id});
 
     }
 }

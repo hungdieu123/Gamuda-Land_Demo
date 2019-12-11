@@ -65,7 +65,10 @@ public class Muabancanho_Adapter extends RecyclerView.Adapter<Muabancanho_Adapte
                 Muabancanho tinTuc = muabancanhoList.get(position);
                 Intent intent = new Intent(context, WebView_Chothue_Canho.class);
                 intent.putExtra("link", tinTuc.link);
-                context.startActivity(intent);
+                if (muabancanhoList.get(position).getLink().equals("")){
+                }else {
+                    context.startActivity(intent);
+                }
 
             }
         });
@@ -242,8 +245,11 @@ public class Muabancanho_Adapter extends RecyclerView.Adapter<Muabancanho_Adapte
                 Muabancanho tinTuc = muabancanhoList.get(position);
                 Intent intent = new Intent(context, WebView_Chothue_Canho.class);
                 intent.putExtra("link", tinTuc.link);
-                context.startActivity(intent);
-
+                if (muabancanhoList.get(position).getLink().equals("")){
+                    Toast.makeText(context,"Vui lòng cập nhập đường dẫn để xem chi tiết!",Toast.LENGTH_LONG).show();
+                }else {
+                    context.startActivity(intent);
+                }
             }
         });
 

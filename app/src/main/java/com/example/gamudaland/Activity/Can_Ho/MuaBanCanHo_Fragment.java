@@ -183,7 +183,7 @@ public class MuaBanCanHo_Fragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-//                chothueLoDat_adapter.getFilter().filter(s);
+                muabanLoDat_adapter.getFilter().filter(s);
                 return false;
             }
         });
