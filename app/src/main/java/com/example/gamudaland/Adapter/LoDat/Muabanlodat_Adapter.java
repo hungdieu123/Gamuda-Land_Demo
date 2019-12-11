@@ -56,18 +56,6 @@ public class Muabanlodat_Adapter extends RecyclerView.Adapter<Muabanlodat_Adapte
     public void onBindViewHolder(@NonNull final Muabanlodat_Adapter.MuabanLoDatHolder holder, final int position) {
         muabanlodatDAO=new MuabanlodatDAO(context);
         muabanlodat=new Muabanlodat();
-        holder.tittile.setText(muabanlodatList.get(position).getTittle());
-        holder.date.setText(muabanlodatList.get(position).getDate());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Muabanlodat tinTuc = muabanlodatList.get(position);
-                Intent intent = new Intent(context, WebView_Chothue_Canho.class);
-                intent.putExtra("link", tinTuc.link);
-                context.startActivity(intent);
-
-            }
-        });
         Random r = new Random();
         final int i1 = (r.nextInt(8000) + 65);
         if (muabanlodatList.get(position).getGia()!=null){
@@ -75,6 +63,28 @@ public class Muabanlodat_Adapter extends RecyclerView.Adapter<Muabanlodat_Adapte
         }else {
             holder.gia.setText("Click Để Xem Thêm!");
         }
+        holder.tittile.setText(muabanlodatList.get(position).getTittle());
+        holder.date.setText(muabanlodatList.get(position).getDate());
+        holder.dientich.setText(muabanlodatList.get(position).getDientich()+"m2");
+
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Muabanlodat tinTuc = muabanlodatList.get(position);
+                Intent intent = new Intent(context, WebView_Chothue_Canho.class);
+                intent.putExtra("link", tinTuc.link);
+                if (muabanlodatList.get(position).getLink().equals("")){
+
+                }else {
+                    context.startActivity(intent);
+                }
+
+
+            }
+        });
+
 
 
         holder.xoa.setOnClickListener(new View.OnClickListener() {
@@ -128,8 +138,7 @@ public class Muabanlodat_Adapter extends RecyclerView.Adapter<Muabanlodat_Adapte
                 final TextInputEditText edttiitle,edtdate,edtgia,edtdientich,edtlink,edtma;
                 final Button ok1,cancel1,btnSET;
                 ok1=dialog1.findViewById(R.id.btnok);
-
-
+                cancel1=dialog1.findViewById(R.id.btncancellodat);
 
                 btnSET=dialog1.findViewById(R.id.btnSet);
                 edttiitle=dialog1.findViewById(R.id.edttittle);
@@ -150,6 +159,14 @@ public class Muabanlodat_Adapter extends RecyclerView.Adapter<Muabanlodat_Adapte
 
 
 
+                cancel1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                        notifyDataSetChanged();
+
+                    }
+                });
 
                 btnSET.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -243,7 +260,12 @@ public class Muabanlodat_Adapter extends RecyclerView.Adapter<Muabanlodat_Adapte
                 Muabanlodat tinTuc = muabanlodatList.get(position);
                 Intent intent = new Intent(context, WebView_Chothue_Canho.class);
                 intent.putExtra("link", tinTuc.link);
-                context.startActivity(intent);
+                if (muabanlodatList.get(position).getLink().equals("")){
+                    Toast.makeText(context,"Vui lòng cập nhập đường dẫn để xem chi tiết!",Toast.LENGTH_LONG).show();
+                }else {
+                    context.startActivity(intent);
+                }
+
 
             }
         });
@@ -257,7 +279,7 @@ public class Muabanlodat_Adapter extends RecyclerView.Adapter<Muabanlodat_Adapte
     }
 
     public class MuabanLoDatHolder extends RecyclerView.ViewHolder {
-        TextView tittile,date,gia;
+        TextView tittile,date,gia,dientich;
         Button btnSet;
         ImageView xemthem,update,xoa;
         public MuabanLoDatHolder(@NonNull View itemView) {
@@ -269,6 +291,7 @@ public class Muabanlodat_Adapter extends RecyclerView.Adapter<Muabanlodat_Adapte
             xoa=itemView.findViewById(R.id.ivxoa);
             gia=itemView.findViewById(R.id.tvgia);
             btnSet=itemView.findViewById(R.id.btnSet);
+            dientich=itemView.findViewById(R.id.tvdientichlodat);
 
 
         }

@@ -32,13 +32,13 @@ import java.util.List;
 import java.util.Random;
 
 public class ChothueCanHo_Fragment extends Fragment {
-    private ChothuecanhoDAO muabancanhoDAO;
+    private ChothuecanhoDAO chothuecanhoDAO;
     private RecyclerView recyclerView;
     AlertDialog alertDialog;
-    private Chothuecanho_Adapter muabanLoDat_adapter;
-    private List<Chothuecanho> muabancanhos;
+    private Chothuecanho_Adapter chothueLoDat_adapter;
+    private List<Chothuecanho> chothuecanhos;
     FloatingActionButton floatingActionButton;
-    private Chothuecanho muabancanho;
+    private Chothuecanho chothuecanho;
 
     @Nullable
     @Override
@@ -48,10 +48,10 @@ public class ChothueCanHo_Fragment extends Fragment {
         recyclerView = view.findViewById(R.id.chothuecanho_rcview);
         floatingActionButton = view.findViewById(R.id.floatingActionButton3);
 
-        muabancanho = new Chothuecanho();
+        chothuecanho = new Chothuecanho();
 
-        muabancanhoDAO = new ChothuecanhoDAO(getActivity());
-        muabancanhos = muabancanhoDAO.getAll();
+        chothuecanhoDAO = new ChothuecanhoDAO(getActivity());
+        chothuecanhos = chothuecanhoDAO.getAll();
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,32 +106,30 @@ public class ChothueCanHo_Fragment extends Fragment {
                             Toast.makeText(getActivity(), "Vui Lòng Không Để Trống Giá!", Toast.LENGTH_SHORT).show();
                         } else if (dientich.equals("")) {
                             Toast.makeText(getActivity(), "Vui Lòng Không Để Trống Diện TÍch!", Toast.LENGTH_SHORT).show();
-                        } else if (link.equals("")) {
-                            Toast.makeText(getActivity(), "Vui Lòng Không Để Trống Link!", Toast.LENGTH_SHORT).show();
                         } else {
                             Random r = new Random();
                             int i1 = (r.nextInt(8000) + 65);
 
-                            muabancanho = new Chothuecanho();
+                            chothuecanho = new Chothuecanho();
 
-                            muabancanho.setTittle(edttiitle.getText().toString().trim());
-                            muabancanho.setDate(edtdate.getText().toString().trim());
-                            muabancanho.setGia(edtgia.getText().toString().trim());
-                            muabancanho.setDientich(edtdientich.getText().toString().trim());
-                            muabancanho.setLink(edtlink.getText().toString().trim());
-                            muabancanho.setMachothuecanho(String.valueOf(i1));
+                            chothuecanho.setTittle(edttiitle.getText().toString().trim());
+                            chothuecanho.setDate(edtdate.getText().toString().trim());
+                            chothuecanho.setGia(edtgia.getText().toString().trim());
+                            chothuecanho.setDientich(edtdientich.getText().toString().trim());
+                            chothuecanho.setLink(edtlink.getText().toString().trim());
+                            chothuecanho.setMachothuecanho(String.valueOf(i1));
 
-                            muabancanhoDAO = new ChothuecanhoDAO(getActivity());
+                            chothuecanhoDAO = new ChothuecanhoDAO(getActivity());
 
-                            long resurt = muabancanhoDAO.insert(muabancanho);
+                            long resurt = chothuecanhoDAO.insert(chothuecanho);
                             if (resurt > 0) {
                                 Toast.makeText(getActivity(), "Thêm Thành Công!", Toast.LENGTH_SHORT).show();
 
-                                muabancanhos = muabancanhoDAO.getAll();
-                                muabanLoDat_adapter = new Chothuecanho_Adapter(muabancanhos, getActivity());
+                                chothuecanhos = chothuecanhoDAO.getAll();
+                                chothueLoDat_adapter = new Chothuecanho_Adapter(chothuecanhos, getActivity());
                                 StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
                                 recyclerView.setLayoutManager(gridLayoutManager);
-                                recyclerView.setAdapter(muabanLoDat_adapter);
+                                recyclerView.setAdapter(chothueLoDat_adapter);
 
                                 alertDialog.dismiss();
 
@@ -153,10 +151,10 @@ public class ChothueCanHo_Fragment extends Fragment {
         });
 
 
-        muabanLoDat_adapter = new Chothuecanho_Adapter(muabancanhos, getActivity());
+        chothueLoDat_adapter = new Chothuecanho_Adapter(chothuecanhos, getActivity());
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setAdapter(muabanLoDat_adapter);
+        recyclerView.setAdapter(chothueLoDat_adapter);
 
         setHasOptionsMenu(true);
 
@@ -185,7 +183,7 @@ public class ChothueCanHo_Fragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-//                chothueLoDat_adapter.getFilter().filter(s);
+                chothueLoDat_adapter.getFilter().filter(s);
                 return false;
             }
         });

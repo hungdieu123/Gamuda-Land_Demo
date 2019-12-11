@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gamudaland.Activity.Lo_Dat.WebView_Chothue_Canho;
 import com.example.gamudaland.Model.Chothuecanho;
+import com.example.gamudaland.Model.Chothuecanho;
 import com.example.gamudaland.R;
+import com.example.gamudaland.SQLDAO.ChothuecanhoDAO;
 import com.example.gamudaland.SQLDAO.ChothuecanhoDAO;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -58,6 +60,7 @@ public class Chothuecanho_Adapter extends RecyclerView.Adapter<Chothuecanho_Adap
         chothuecanho=new Chothuecanho();
         holder.tittile.setText(chothuecanhoList.get(position).getTittle());
         holder.date.setText(chothuecanhoList.get(position).getDate());
+        holder.dientich.setText(chothuecanhoList.get(position).getDientich()+"m2");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,8 +200,6 @@ public class Chothuecanho_Adapter extends RecyclerView.Adapter<Chothuecanho_Adap
                             Toast.makeText(context,"Vui Lòng Không Để Trống Giá!",Toast.LENGTH_SHORT).show();
                         }else if (dientich.equals("")){
                             Toast.makeText(context,"Vui Lòng Không Để Trống Diện TÍch!",Toast.LENGTH_SHORT).show();
-                        }else if (link.equals("")){
-                            Toast.makeText(context,"Vui Lòng Không Để Trống Link!",Toast.LENGTH_SHORT).show();
                         }else {
 
 
@@ -263,7 +264,7 @@ public class Chothuecanho_Adapter extends RecyclerView.Adapter<Chothuecanho_Adap
     }
 
     public class ChothueLoDatHolder extends RecyclerView.ViewHolder {
-        TextView tittile,date,gia;
+        TextView tittile,date,gia,dientich;
         Button btnSet;
         ImageView xemthem,update,xoa;
         public ChothueLoDatHolder(@NonNull View itemView) {
@@ -275,6 +276,7 @@ public class Chothuecanho_Adapter extends RecyclerView.Adapter<Chothuecanho_Adap
             xoa=itemView.findViewById(R.id.ivxoa);
             gia=itemView.findViewById(R.id.tvgia);
             btnSet=itemView.findViewById(R.id.btnSet);
+            dientich=itemView.findViewById(R.id.tvdientichlodat);
 
 
         }
@@ -282,10 +284,10 @@ public class Chothuecanho_Adapter extends RecyclerView.Adapter<Chothuecanho_Adap
 
 
     public Filter getFilter() {
-        return qLnguoidungFilter;
+        return filter;
     }
 
-    private Filter qLnguoidungFilter=new Filter() {
+    private Filter filter=new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Chothuecanho> filteredlist=new ArrayList<>();

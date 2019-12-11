@@ -58,13 +58,15 @@ public class Chothuelodat_Adapter extends RecyclerView.Adapter<Chothuelodat_Adap
         chothuelodat=new Chothuelodat();
         holder.tittile.setText(chothuelodatList.get(position).getTittle());
         holder.date.setText(chothuelodatList.get(position).getDate());
+        holder.dientich.setText(chothuelodatList.get(position).getDientich()+"m2");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Chothuelodat tinTuc = chothuelodatList.get(position);
                 Intent intent = new Intent(context, WebView_Chothue_Canho.class);
                 intent.putExtra("link", tinTuc.link);
-                if (tinTuc.link!=null){
+                if (chothuelodatList.get(position).getLink().equals("")){
+                }else {
                     context.startActivity(intent);
                 }
 
@@ -94,10 +96,6 @@ public class Chothuelodat_Adapter extends RecyclerView.Adapter<Chothuelodat_Adap
                     @Override
                     public void onClick(View v) {
 
-
-//                        Toast.makeText(context,"Xóa Thành công "+chothuelodatList.get(position).getTittle(),Toast.LENGTH_LONG).show();
-//                        chothuelodatDAO.delete(chothuelodatList.get(position).getMachothuelodat());
-//                        chothuelodatList.remove(position);
 
                         for (int i=0;i<chothuelodatList.size();i++){
                         chothuelodatDAO.delete(chothuelodatList.get(i).getMachothuelodat());
@@ -251,8 +249,11 @@ public class Chothuelodat_Adapter extends RecyclerView.Adapter<Chothuelodat_Adap
                 Chothuelodat tinTuc = chothuelodatList.get(position);
                 Intent intent = new Intent(context, WebView_Chothue_Canho.class);
                 intent.putExtra("link", tinTuc.link);
-                context.startActivity(intent);
-
+                if (chothuelodatList.get(position).getLink().equals("")){
+                    Toast.makeText(context,"Vui lòng cập nhập đường dẫn để xem chi tiết!",Toast.LENGTH_LONG).show();
+                }else {
+                    context.startActivity(intent);
+                }
             }
         });
 
@@ -266,7 +267,7 @@ public class Chothuelodat_Adapter extends RecyclerView.Adapter<Chothuelodat_Adap
     }
 
     public class ChothueLoDatHolder extends RecyclerView.ViewHolder {
-        TextView tittile,date,gia;
+        TextView tittile,date,gia,dientich;
         Button btnSet;
         ImageView xemthem,update,xoa;
         public ChothueLoDatHolder(@NonNull View itemView) {
@@ -278,6 +279,7 @@ public class Chothuelodat_Adapter extends RecyclerView.Adapter<Chothuelodat_Adap
             xoa=itemView.findViewById(R.id.ivxoa);
             gia=itemView.findViewById(R.id.tvgia);
             btnSet=itemView.findViewById(R.id.btnSet);
+            dientich=itemView.findViewById(R.id.tvdientichlodat);
 
 
         }
@@ -285,10 +287,10 @@ public class Chothuelodat_Adapter extends RecyclerView.Adapter<Chothuelodat_Adap
 
 
     public Filter getFilter() {
-        return qLnguoidungFilter;
+        return filter;
     }
 
-    private Filter qLnguoidungFilter=new Filter() {
+    private Filter filter=new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Chothuelodat> filteredlist=new ArrayList<>();

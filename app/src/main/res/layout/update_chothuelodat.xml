@@ -15,7 +15,7 @@
             android:id="@+id/edttittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tittle" />
+            android:hint="Tiêu Đề" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -27,11 +27,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="265dp"
+
         android:layout_height="65dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtdate"
             android:inputType=""
+            android:enabled="false"
             android:layout_width="265dp"
             android:layout_height="wrap_content"
             android:hint="Ngày" />
@@ -63,6 +65,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtdientich"
+            android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Diện Tích" />
@@ -78,7 +81,7 @@
             android:lines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Link" />
+            android:hint="Đường dẫn(Nếu có)" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -90,7 +93,7 @@
 
             android:textAllCaps="false"
             android:text="Cancel"
-            android:id="@+id/btncancel"
+            android:id="@+id/btncancellodat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <Button

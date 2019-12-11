@@ -78,6 +78,7 @@ public class MuaBanLoDat_Fragment extends Fragment {
                 edtgia=dialog1.findViewById(R.id.edtgia);
                 edtdientich=dialog1.findViewById(R.id.edtdientich);
                 edtlink=dialog1.findViewById(R.id.edtlink);
+                cancel1=dialog1.findViewById(R.id.btncancellodat);
                 btnSET.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -93,6 +94,12 @@ public class MuaBanLoDat_Fragment extends Fragment {
                             }
                         },nam,thang,ngay);
                         dialog.show();
+                    }
+                });
+                cancel1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
                     }
                 });
 
@@ -114,8 +121,6 @@ public class MuaBanLoDat_Fragment extends Fragment {
                             Toast.makeText(getActivity(),"Vui Lòng Không Để Trống Giá!",Toast.LENGTH_SHORT).show();
                         }else if (dientich.equals("")){
                             Toast.makeText(getActivity(),"Vui Lòng Không Để Trống Diện TÍch!",Toast.LENGTH_SHORT).show();
-                        }else if (link.equals("")){
-                            Toast.makeText(getActivity(),"Vui Lòng Không Để Trống Link!",Toast.LENGTH_SHORT).show();
                         }else {
                             Random r = new Random();
                             int i1 = (r.nextInt(8000) + 65);

@@ -58,6 +58,7 @@ public class Muabancanho_Adapter extends RecyclerView.Adapter<Muabancanho_Adapte
         muabancanho=new Muabancanho();
         holder.tittile.setText(muabancanhoList.get(position).getTittle());
         holder.date.setText(muabancanhoList.get(position).getDate());
+        holder.dientich.setText(muabancanhoList.get(position).getDientich()+"m2");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,8 +193,6 @@ public class Muabancanho_Adapter extends RecyclerView.Adapter<Muabancanho_Adapte
                             Toast.makeText(context,"Vui Lòng Không Để Trống Giá!",Toast.LENGTH_SHORT).show();
                         }else if (dientich.equals("")){
                             Toast.makeText(context,"Vui Lòng Không Để Trống Diện TÍch!",Toast.LENGTH_SHORT).show();
-                        }else if (link.equals("")){
-                            Toast.makeText(context,"Vui Lòng Không Để Trống Link!",Toast.LENGTH_SHORT).show();
                         }else {
 
 
@@ -257,7 +256,7 @@ public class Muabancanho_Adapter extends RecyclerView.Adapter<Muabancanho_Adapte
     }
 
     public class MuabanLoDatHolder extends RecyclerView.ViewHolder {
-        TextView tittile,date,gia;
+        TextView tittile,date,gia,dientich;
         Button btnSet;
         ImageView xemthem,update,xoa;
         public MuabanLoDatHolder(@NonNull View itemView) {
@@ -269,6 +268,7 @@ public class Muabancanho_Adapter extends RecyclerView.Adapter<Muabancanho_Adapte
             xoa=itemView.findViewById(R.id.ivxoa);
             gia=itemView.findViewById(R.id.tvgia);
             btnSet=itemView.findViewById(R.id.btnSet);
+            dientich=itemView.findViewById(R.id.tvdientichlodat);
 
 
         }

@@ -118,8 +118,6 @@ public class ChothueLodat_Fragment extends Fragment {
                             Toast.makeText(getActivity(),"Vui Lòng Không Để Trống Giá!",Toast.LENGTH_SHORT).show();
                         }else if (dientich.equals("")){
                             Toast.makeText(getActivity(),"Vui Lòng Không Để Trống Diện TÍch!",Toast.LENGTH_SHORT).show();
-                        }else if (link.equals("")){
-                            Toast.makeText(getActivity(),"Vui Lòng Không Để Trống Link!",Toast.LENGTH_SHORT).show();
                         }else {
                             Random r = new Random();
                             int i1 = (r.nextInt(8000) + 65);
